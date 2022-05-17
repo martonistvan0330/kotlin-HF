@@ -1,4 +1,4 @@
-package com.example
+package hu.gameoflife
 
 import javafx.application.Application
 
