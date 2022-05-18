@@ -9,7 +9,7 @@ enum class State {
 }
 
 class Cell(var x: Int, var y: Int, var state: State = Dead) {
-    var nextState: State = state
+    private var nextState: State = state
 
     fun switchState() {
         state = when (state) {

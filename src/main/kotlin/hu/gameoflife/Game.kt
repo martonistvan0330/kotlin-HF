@@ -6,7 +6,6 @@ import javafx.event.Event
 import javafx.event.EventHandler
 import javafx.scene.Parent
 import javafx.scene.Scene
-import javafx.scene.canvas.GraphicsContext
 import javafx.scene.control.Slider
 import javafx.scene.layout.BorderPane
 import javafx.stage.Stage
@@ -14,7 +13,6 @@ import javafx.stage.Stage
 class Game : Application() {
 
     private lateinit var mainScene: Scene
-    private lateinit var graphicsContext: GraphicsContext
 
     private val board = BoardView()
 
