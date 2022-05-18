@@ -14,31 +14,24 @@ class Board {
 
     private val directions: Set<Direction> = setOf(North, NorthEast, East, SouthEast, South, SouthWest, West,  NorthWest)
 
-    init {
-        cells[0][2].state = Alive
-        cells[1][0].state = Alive
-        cells[1][2].state = Alive
-        cells[2][1].state = Alive
-        cells[2][2].state = Alive
+    fun reset() {
+        for (cellRow in cells) {
+            for (cell in cellRow) {
+                cell.state = Dead
+            }
+        }
     }
 
     fun update() {
         for (cellRow in cells) {
             for (cell in cellRow) {
-                calculateNextState(cell, countAliveNeighbours(cell))
+                cell.calculateNextState(countAliveNeighbours(cell))
             }
         }
         for (cellRow in cells) {
             for (cell in cellRow) {
                 cell.update()
             }
-        }
-    }
-
-    private fun calculateNextState(cell: Cell, aliveNeighbours: Int) {
-        when (cell.state) {
-            Alive -> cell.nextState = if (aliveNeighbours !in 2..3) Dead else Alive
-            Dead -> cell.nextState = if (aliveNeighbours == 3) Alive else Dead
         }
     }
 

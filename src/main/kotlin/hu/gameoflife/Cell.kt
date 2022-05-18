@@ -18,6 +18,13 @@ class Cell(var x: Int, var y: Int, var state: State = Dead) {
         }
     }
 
+    fun calculateNextState(aliveNeighbours: Int) {
+        nextState = when (state) {
+            Alive -> if (aliveNeighbours !in 2..3) Dead else Alive
+            Dead -> if (aliveNeighbours == 3) Alive else Dead
+        }
+    }
+
     fun update() {
         state = nextState
     }

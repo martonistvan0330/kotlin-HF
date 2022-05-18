@@ -21,45 +21,10 @@ class BoardView {
     private val board = Board()
 
     val canvas = Canvas(WIDTH, HEIGHT)
-    val graphicsContext: GraphicsContext = canvas.graphicsContext2D
+    private val graphicsContext: GraphicsContext = canvas.graphicsContext2D
 
     init {
         prepareActionHandlers()
-    }
-
-    private fun clear() {
-        graphicsContext.clearRect(0.0, 0.0, WIDTH, HEIGHT)
-    }
-
-    fun draw() {
-        clear()
-        for (cellRow in board.cells) {
-            for (cell in cellRow) {
-                graphicsContext.fill = when (cell.state) {
-                    Alive -> {
-                        Color.RED
-                    }
-                    Dead -> {
-                        Color.AQUAMARINE
-                    }
-                }
-                val x = cell.x * CELL_WIDTH
-                val y = cell.y * CELL_HEIGHT
-                graphicsContext.fillRect(x, y, CELL_WIDTH, CELL_HEIGHT)
-            }
-        }
-        for (i in 1 until Board.CELL_COUNT_X) {
-            val x = i * CELL_WIDTH
-            graphicsContext.strokeLine(x, 0.0, x, HEIGHT)
-        }
-        for (i in 1 until Board.CELL_COUNT_Y) {
-            val y = i * CELL_HEIGHT
-            graphicsContext.strokeLine(0.0, y, WIDTH, y)
-        }
-    }
-
-    fun update() {
-        board.update()
     }
 
     private fun prepareActionHandlers() {
@@ -68,5 +33,44 @@ class BoardView {
             val y = floor(event.y / CELL_HEIGHT).roundToInt()
             board.switchState(x, y)
         }
+    }
+
+    private fun clear() {
+        graphicsContext.clearRect(0.0, 0.0, WIDTH, HEIGHT)
+    }
+
+    fun reset() {
+        board.reset()
+    }
+
+    fun draw() {
+        clear()
+        for (cellRow in board.cells) {
+            for (cell in cellRow) {
+                graphicsContext.fill = when (cell.state) {
+                    Alive -> {
+                        Color.YELLOW
+                    }
+                    Dead -> {
+                        Color.GRAY
+                    }
+                }
+                val x = cell.x * CELL_WIDTH
+                val y = cell.y * CELL_HEIGHT
+                graphicsContext.fillRect(x, y, CELL_WIDTH, CELL_HEIGHT)
+            }
+        }
+        for (i in 0 .. Board.CELL_COUNT_X) {
+            val x = i * CELL_WIDTH
+            graphicsContext.strokeLine(x, 0.0, x, HEIGHT)
+        }
+        for (i in 0 .. Board.CELL_COUNT_Y) {
+            val y = i * CELL_HEIGHT
+            graphicsContext.strokeLine(0.0, y, WIDTH, y)
+        }
+    }
+
+    fun update() {
+        board.update()
     }
 }
