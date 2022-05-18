@@ -64,7 +64,13 @@ class Game : Application() {
             val slider = event.source as Slider
             updatesPerSecond = slider.value
         }
-        return Controls(startEventHandler, stopEventHandler, stepEventHandler, resetEventHandler, sliderEventHandler)
+        return Controls(
+            startEventHandler = startEventHandler,
+            stopEventHandler = stopEventHandler,
+            stepEventHandler = stepEventHandler,
+            resetEventHandler = resetEventHandler,
+            sliderEventHandler = sliderEventHandler
+        )
     }
 
     private fun tickAndRender(currentNanoTime: Long) {
