@@ -8,7 +8,8 @@ enum class State {
     Dead
 }
 
-class Cell(var x: Int, var y: Int, var state: State = Dead) {
+class Cell(val x: Int, val y: Int) {
+    var state: State = Dead
     private var nextState: State = state
 
     fun switchState() {
