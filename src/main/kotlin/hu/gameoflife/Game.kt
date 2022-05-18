@@ -59,6 +59,7 @@ class Game : Application() {
             board.update()
         }
         val resetEventHandler: EventHandler<Event> = EventHandler {
+            started = false
             board.reset()
         }
         val sliderEventHandler: EventHandler<Event> = EventHandler { event ->
@@ -67,7 +68,6 @@ class Game : Application() {
         }
         return Controls(startEventHandler, stopEventHandler, stepEventHandler, resetEventHandler, sliderEventHandler)
     }
-
 
     private fun tickAndRender(currentNanoTime: Long) {
         val elapsedNanos = currentNanoTime - lastFrameTime

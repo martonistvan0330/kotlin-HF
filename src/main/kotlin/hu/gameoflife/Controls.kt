@@ -56,7 +56,7 @@ class Controls(
     private fun createStartButton(): Button {
         val startButton = Button("START")
         startButton.onMouseClicked = EventHandler {
-            switchLeft()
+            switchToStarted()
             startEventHandler.handle(it)
         }
         return startButton
@@ -65,7 +65,7 @@ class Controls(
     private fun createStopButton(): Button {
         val stopButton = Button("STOP")
         stopButton.onMouseClicked = EventHandler {
-            switchLeft()
+            switchToStopped()
             stopEventHandler.handle(it)
         }
         return stopButton
@@ -82,6 +82,7 @@ class Controls(
     private fun createResetButton(): Button {
         val resetButton = Button("RESET")
         resetButton.onMouseClicked = EventHandler {
+            switchToStopped()
             resetEventHandler.handle(it)
         }
         return resetButton
@@ -107,8 +108,13 @@ class Controls(
         return slider
     }
 
-    private fun switchLeft() {
-        leftStopped.isVisible = !leftStopped.isVisible
-        leftStarted.isVisible = !leftStarted.isVisible
+    private fun switchToStarted() {
+        leftStopped.isVisible = false
+        leftStarted.isVisible = true
+    }
+
+    private fun switchToStopped() {
+        leftStopped.isVisible = true
+        leftStarted.isVisible = false
     }
 }
