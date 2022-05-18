@@ -45,19 +45,13 @@ class BoardView {
 
     fun draw() {
         clear()
-        for (cellRow in board.cells) {
-            for (cell in cellRow) {
+        board.cells.forEach { cellRow ->
+            cellRow.forEach { cell ->
                 graphicsContext.fill = when (cell.state) {
-                    Alive -> {
-                        Color.YELLOW
-                    }
-                    Dead -> {
-                        Color.GRAY
-                    }
+                    Alive -> Color.GREENYELLOW
+                    Dead -> Color.GRAY
                 }
-                val x = cell.x * CELL_WIDTH
-                val y = cell.y * CELL_HEIGHT
-                graphicsContext.fillRect(x, y, CELL_WIDTH, CELL_HEIGHT)
+                graphicsContext.fillRect(cell.x * CELL_WIDTH, cell.y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT)
             }
         }
         for (i in 0 .. Board.CELL_COUNT_X) {
