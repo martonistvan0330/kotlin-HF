@@ -20,8 +20,8 @@ class Controls(
 ) {
     val layout = BorderPane()
 
-    private lateinit var leftStopped: FlowPane
-    private lateinit var leftStarted: FlowPane
+    private var leftStopped: FlowPane = createLeftStoppedLayout()
+    private var leftStarted: FlowPane = createLeftStartedLayout()
 
     init {
         layout.padding = Insets(10.0)
@@ -32,25 +32,25 @@ class Controls(
 
     private fun createLeftLayout(): StackPane {
         val left = StackPane()
-        createLeftStoppedLayout()
-        createLeftStartedLayout()
         left.children.add(leftStopped)
         left.children.add(leftStarted)
         return left
     }
 
-    private fun createLeftStoppedLayout() {
-        leftStopped = FlowPane()
+    private fun createLeftStoppedLayout(): FlowPane {
+        val leftStopped = FlowPane()
         leftStopped.hgap = 10.0
         leftStopped.children.add(createStartButton())
         leftStopped.children.add(createStepButton())
+        return leftStopped
     }
 
-    private fun createLeftStartedLayout() {
-        leftStarted = FlowPane()
+    private fun createLeftStartedLayout(): FlowPane {
+        val leftStarted = FlowPane()
         leftStopped.hgap = 10.0
         leftStarted.children.add(createStopButton())
         leftStarted.isVisible = false
+        return leftStarted
     }
 
     private fun createStartButton(): Button {
