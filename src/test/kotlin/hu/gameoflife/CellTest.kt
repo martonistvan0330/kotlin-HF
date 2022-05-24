@@ -8,6 +8,7 @@ import org.junit.Before
 import org.junit.Test
 
 class CellTest {
+
     private lateinit var cell: Cell
 
     @Before
