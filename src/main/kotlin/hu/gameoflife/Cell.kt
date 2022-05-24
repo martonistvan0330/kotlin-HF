@@ -10,7 +10,8 @@ enum class State {
 
 class Cell(val x: Int, val y: Int) {
     var state: State = Dead
-    private var nextState: State = state
+    var nextState: State = state
+        private set
 
     fun switchState() {
         state = when (state) {
@@ -21,7 +22,7 @@ class Cell(val x: Int, val y: Int) {
 
     fun calculateNextState(aliveNeighbours: Int) {
         nextState = when (state) {
-            Alive -> if (aliveNeighbours !in 2..3) Dead else Alive
+            Alive -> if (aliveNeighbours in 2..3) Alive else Dead
             Dead -> if (aliveNeighbours == 3) Alive else Dead
         }
     }
