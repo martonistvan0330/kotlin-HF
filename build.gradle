@@ -40,6 +40,9 @@ test {
 
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.required = true
+    }
 }
 
 mainClassName = 'hu.gameoflife.MainKt'
