@@ -21,7 +21,24 @@ class CellTest {
     }
 
     @Test
-    fun switchState_Success() {
+    fun getX() {
+        assertEquals(0, cell.x)
+    }
+
+    @Test
+    fun getY() {
+        assertEquals(0, cell.y)
+    }
+
+    @Test
+    fun setState() {
+        assertEquals(Dead, cell.state)
+        cell.state = Alive
+        assertEquals(Alive, cell.state)
+    }
+
+    @Test
+    fun switchState() {
         assertEquals(Dead, cell.state)
         cell.switchState()
         assertEquals(Alive, cell.state)
@@ -30,7 +47,7 @@ class CellTest {
     }
 
     @Test
-    fun calculateNextState_Dead_Dead_Success() {
+    fun calculateNextState_Dead_Dead() {
         assertEquals(Dead, cell.state)
         assertEquals(Dead, cell.nextState)
         cell.calculateNextState(1)
@@ -38,7 +55,7 @@ class CellTest {
     }
 
     @Test
-    fun calculateNextState_Dead_Alive_Success() {
+    fun calculateNextState_Dead_Alive() {
         assertEquals(Dead, cell.state)
         assertEquals(Dead, cell.nextState)
         cell.calculateNextState(3)
@@ -46,25 +63,29 @@ class CellTest {
     }
 
     @Test
-    fun calculateNextState_Alive_Dead_Success() {
+    fun calculateNextState_Alive_Dead() {
         cell.switchState()
         assertEquals(Alive, cell.state)
         assertEquals(Dead, cell.nextState)
         cell.calculateNextState(1)
         assertEquals(Dead, cell.nextState)
+        cell.calculateNextState(4)
+        assertEquals(Dead, cell.nextState)
     }
 
     @Test
-    fun calculateNextState_Alive_Alive_Success() {
+    fun calculateNextState_Alive_Alive() {
         cell.switchState()
         assertEquals(Alive, cell.state)
         assertEquals(Dead, cell.nextState)
+        cell.calculateNextState(2)
+        assertEquals(Alive, cell.nextState)
         cell.calculateNextState(3)
         assertEquals(Alive, cell.nextState)
     }
 
     @Test
-    fun update_Success() {
+    fun update() {
         cell.switchState()
         assertEquals(Alive, cell.state)
         assertEquals(Dead, cell.nextState)
