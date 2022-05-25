@@ -15,8 +15,8 @@ class Board {
     private val directions: Set<Direction> = setOf(North, NorthEast, East, SouthEast, South, SouthWest, West,  NorthWest)
 
     fun reset() {
-        for (cellRow in cells) {
-            for (cell in cellRow) {
+        cells.forEach { cellRow ->
+            cellRow.forEach { cell ->
                 cell.state = Dead
             }
         }
@@ -41,7 +41,13 @@ class Board {
     }
 
     private fun countAliveNeighbours(cell: Cell): Int {
-        return directions.count { direction -> getNeighbour(cell, direction).state == Alive }
+        return directions.count { direction ->
+            checkAliveNeighbour(cell, direction)
+        }
+    }
+
+    private fun checkAliveNeighbour(cell: Cell, direction: Direction): Boolean {
+        return getNeighbour(cell, direction).state == Alive
     }
 
     private fun getNeighbour(cell: Cell, direction: Direction): Cell {
