@@ -41,7 +41,13 @@ class Board {
     }
 
     private fun countAliveNeighbours(cell: Cell): Int {
-        return directions.count { direction -> getNeighbour(cell, direction).state == Alive }
+        return directions.count { direction ->
+            checkAliveNeighbour(cell, direction)
+        }
+    }
+
+    private fun checkAliveNeighbour(cell: Cell, direction: Direction): Boolean {
+        return getNeighbour(cell, direction).state == Alive
     }
 
     private fun getNeighbour(cell: Cell, direction: Direction): Cell {
