@@ -15,8 +15,8 @@ class Board {
     private val directions: Set<Direction> = setOf(North, NorthEast, East, SouthEast, South, SouthWest, West,  NorthWest)
 
     fun reset() {
-        for (cellRow in cells) {
-            for (cell in cellRow) {
+        cells.forEach { cellRow ->
+            cellRow.forEach { cell ->
                 cell.state = Dead
             }
         }
