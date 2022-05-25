@@ -54,4 +54,26 @@ class BoardTest {
         assertEquals(Dead, board.cells[1][2].state)
         assertEquals(Dead, board.cells[2][2].state)
     }
+
+    @Test
+    fun switchState() {
+        board.switchState(0, 0)
+        board.switchState(1, 0)
+        board.switchState(2, 0)
+        board.switchState(0, 1)
+        board.switchState(1, 1)
+        board.switchState(2, 1)
+        board.switchState(0, 2)
+        board.switchState(1, 2)
+        board.switchState(2, 2)
+        assertEquals(Alive, board.cells[0][0].state)
+        assertEquals(Dead, board.cells[1][0].state)
+        assertEquals(Alive, board.cells[2][0].state)
+        assertEquals(Alive, board.cells[0][1].state)
+        assertEquals(Dead, board.cells[1][1].state)
+        assertEquals(Alive, board.cells[2][1].state)
+        assertEquals(Alive, board.cells[0][2].state)
+        assertEquals(Dead, board.cells[1][2].state)
+        assertEquals(Alive, board.cells[2][2].state)
+    }
 }
