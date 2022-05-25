@@ -19,6 +19,19 @@ class BoardTest {
     }
 
     @Test
+    fun init_Success() {
+        assertEquals(Dead, board.cells[0][0].state)
+        assertEquals(Alive, board.cells[1][0].state)
+        assertEquals(Dead, board.cells[2][0].state)
+        assertEquals(Dead, board.cells[0][1].state)
+        assertEquals(Alive, board.cells[1][1].state)
+        assertEquals(Dead, board.cells[2][1].state)
+        assertEquals(Dead, board.cells[0][2].state)
+        assertEquals(Alive, board.cells[1][2].state)
+        assertEquals(Dead, board.cells[2][2].state)
+    }
+
+    @Test
     fun reset() {
         board.reset()
         board.cells.forEach { cellRow ->
